@@ -58,7 +58,6 @@ const getSalary = () => {
     });
 }
 
-const id = 3;
 // getEmployer(id)
 //     .then( employee => console.log( employee ))
 //     .catch( err => console.log(err) )
@@ -68,15 +67,25 @@ const id = 3;
 //     .catch( err => console.log( err ))
 
 // Don't X
-getEmployer(id)
-    .then( employee => {
+// getEmployer(id)
+//     .then( employee => {
 
-        getSalary( id )
-            .then( salary => {
-                console.log('El empleado: ', employee, ' tiene un salario de: ', salary);
-            })
-            .catch( err => console.log(err))
-    })
-    .catch( err => console.log(err))
+//         getSalary( id )
+//             .then( salary => {
+//                 console.log('El empleado: ', employee, ' tiene un salario de: ', salary);
+//             })
+//             .catch( err => console.log(err))
+//     })
+//     .catch( err => console.log(err))
+
 
 // Chain promises ...
+const id = 2;
+let name_employee;
+getEmployer(id)
+    .then( employee => {
+        name_employee = employee;
+        return getSalary( id ); // No olvidar el return para poder encadenar la promesa
+    })
+    .then( salary => console.log('El empleado: ', name_employee, ' tiene un salario de: ', salary))
+    .catch( err => console.log( err ));
